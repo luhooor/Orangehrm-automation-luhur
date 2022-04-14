@@ -12,4 +12,6 @@ public class HRMLoginPageObjects extends PageObject {
             .locatedBy("#txtPassword");
     public static Target LOGIN_BUTTON = Target.the("login button")
             .locatedBy("#btnLogin");
+    public static Target ERROR_ELEMENT = Target.the("Error element")
+            .locatedBy("#spanMessage");
 }

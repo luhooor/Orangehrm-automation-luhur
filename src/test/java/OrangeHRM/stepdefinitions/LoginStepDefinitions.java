@@ -1,5 +1,6 @@
 package OrangeHRM.stepdefinitions;
 
+import OrangeHRM.pageobjects.HRMLoginPageObjects;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -41,6 +42,28 @@ public class LoginStepDefinitions {
     public void iCanLoginSuccessfully(Actor actor) {
         actor.attemptsTo(
                 Ensure.thatTheCurrentPage().currentUrl().contains("index.php/dashboard")
+        );
+    }
+
+    @When("{actor} input {string} as username")
+    public void iInputAsUsername(Actor actor, String username) throws Exception {
+        actor.attemptsTo(
+                InputText.onField("HRM Username", username)
+        );
+    }
+
+    @And("{actor} input {string} as password")
+    public void iInputAsPassword(Actor actor, String password) throws Exception {
+        actor.attemptsTo(
+                InputText.onField("HRM Password", password)
+        );
+    }
+
+    @Then("{actor} can see an error message: {string}")
+    public void iCanSeeAnErrorMessage(Actor actor, String message) {
+        actor.attemptsTo(
+                Ensure.that(HRMLoginPageObjects.ERROR_ELEMENT).isDisplayed(),
+                Ensure.that(HRMLoginPageObjects.ERROR_ELEMENT).text().isEqualToIgnoringCase(message)
         );
     }
 }
