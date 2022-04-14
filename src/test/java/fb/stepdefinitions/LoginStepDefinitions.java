@@ -1,13 +1,12 @@
 package fb.stepdefinitions;
 
+import fb.pageobjects.CheckPointPageObjects;
 import io.cucumber.java.en.*;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import tasks.*;
 
-import static net.serenitybdd.screenplay.GivenWhenThen.seeThat;
-import static org.hamcrest.Matchers.*;
 
 public class LoginStepDefinitions {
     @Given("{actor} open facebook login page")
@@ -36,18 +35,22 @@ public class LoginStepDefinitions {
 
     @Then("{actor} can't see my news feed")
     public void iCanTSeeMyNewsFeed(Actor actor) {
-        actor.should(seeThat(TheMenu.displayed(), not(contains("News Feed"))));
+//        actor.should(seeThat(TheMenu.displayed(), not(contains("News Feed"))));
+
+        actor.attemptsTo(
+                Ensure.that(CheckPointPageObjects.MENU_LIST).text().not().contains("News Feed")
+        );
     }
 
     @But("{actor} see FB has disabled my account")
     public void iSeeFBHasDisabledMyAccount(Actor actor) {
-        actor.should(
-                seeThat(
-                        TheMessage.displayed(), contains("Your account has been disabled")
-                )
-        );
-
+//        actor.should(
+//                seeThat(
+//                        TheMessage.displayed(), contains("Your account has been disabled")
+//                )
+//        );
         actor.attemptsTo(
+                Ensure.that(CheckPointPageObjects.ERROR_MESSAGE).text().contains("Your account has been disabled"),
                 Ensure.thatTheCurrentPage().currentUrl().contains("checkpoint")
         );
     }
