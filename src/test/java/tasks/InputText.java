@@ -2,6 +2,7 @@ package tasks;
 
 import OrangeHRM.pageobjects.HRMLoginPageObjects;
 import OrangeHRM.pageobjects.HRMPIMPageObjects;
+import fb.pageobjects.LoginPageObjects;
 import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Enter;
@@ -11,6 +12,12 @@ public class InputText {
     public static Performable onField(String fieldType, String value) throws Exception {
         Target field = null;
         switch (fieldType) {
+            case "FB Email":
+                field = LoginPageObjects.EMAIL_FIELD;
+                break;
+            case "FB Password":
+                field = LoginPageObjects.PASSWORD_FIELD;
+                break;
             case "HRM Username":
                 field = HRMLoginPageObjects.EMAIL_FIELD;
                 break;
