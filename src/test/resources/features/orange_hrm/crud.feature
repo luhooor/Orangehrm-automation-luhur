@@ -27,4 +27,3 @@ Feature: Orange HRM - CRUD Employee Data
     When I search for new employee
     And I delete the employee
     Then I cannot see the deleted employee on the list
-#    alternatif: Then I can see delete success message

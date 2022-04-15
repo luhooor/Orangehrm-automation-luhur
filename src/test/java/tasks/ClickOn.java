@@ -7,6 +7,9 @@ import net.serenitybdd.screenplay.Performable;
 import net.serenitybdd.screenplay.Task;
 import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.targets.Target;
+import net.serenitybdd.screenplay.waits.WaitUntil;
+
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 
 public class ClickOn {
@@ -45,6 +48,8 @@ public class ClickOn {
             default:
                 throw new Exception("There is no such button for " + buttonType);
         }
+
+        WaitUntil.the(button, isVisible()).forNoMoreThan(25).seconds();
 
         return Task.where("{0} Click on " + buttonType +" button",
                 Click.on(button)
