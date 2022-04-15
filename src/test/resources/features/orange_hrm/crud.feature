@@ -7,14 +7,14 @@ Feature: Orange HRM - CRUD Employee Data
     And I click on the login button
     And I access employee list
 
+  @HRM-List
+  Scenario: User read employee list successfully
+    Then I can see the employee list
+
   @HRM-Create
   Scenario: User add employee successfully
     When I add new employee with required fields only
     Then I can see the newly created user personal details
-
-  @HRM-List
-  Scenario: User read employee list successfully
-    Then I can see the employee list
 
   @HRM-Update
   Scenario: User update employee successfully
